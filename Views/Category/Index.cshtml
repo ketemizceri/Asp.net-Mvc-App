@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Abc.MvcWebUI.Entity.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<style>
+
+
+
+
+
+.category_head
+{
+
+
+    text-align:center;
+
+
+
+}
+
+
+
+
+
+.action{
+        white-space: nowrap;
+        width: 12%;
+    }
+
+
+th{
+
+
+    text-align:center;
+
+}
+
+
+td{
+
+
+    text-align:center;
+    white-space:nowrap;
+
+}
+
+</style>
+
+
+
+
+
+
+
+<div class="container pb-5">
+
+
+    <h2 class="category_head">Kategori Listesi</h2>
+    <hr />
+    <p class="category_head">
+        
+        @Html.ActionLink("Yeni Kategori", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+    <hr />
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th class="action"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <i class="fas fa-edit ml-1"></i>
+                    @Html.ActionLink("Güncelle", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
+                    <i class="fas fa-trash-alt ml-1"></i>
+                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+</div>

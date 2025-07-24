@@ -1,0 +1,167 @@
+﻿@model Abc.MvcWebUI.Models.OrderDetailsModel
+
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<style>
+
+
+
+
+    .price-header, .price-cell {
+        min-width: 120px; /* Hücreyi genişletir */
+        white-space: nowrap; /* Satır kaymasını engeller */
+        vertical-align: middle; /* Dikey ortalama */
+        font-size: 1rem; /* Yazıyı bir tık büyütür */
+        padding: 10px !important; /* Yeterli boşluk sağlar */
+    }
+
+
+
+
+
+ .table_header
+ {
+
+     white-space:nowrap;
+
+     text-align:center;
+ }
+
+
+ .table_element
+ {
+
+
+    text-align:center;
+
+
+
+ }
+
+
+
+
+
+ .header
+ {
+
+     text-align:center;
+
+
+
+ }
+
+
+
+
+
+</style>
+
+
+
+
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+
+                    <h2 style="text-align:center">
+                        <i class="fas fa-shopping-bag text-primary"></i> Sipariş Detay Bilgileri
+                    </h2>
+                    <hr />
+
+                    <dl class="row">
+                        <dt class="col-sm-4 font-weight-bold">📦 Sipariş Durumu</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.OrderState == Abc.MvcWebUI.Entity.EnumOrderState.Waiting)
+                            {
+                                <span class="badge badge-danger">Onay Bekliyor</span>
+                            }
+                            else if (Model.OrderState == Abc.MvcWebUI.Entity.EnumOrderState.Shipping)
+                            {
+                                <span class="badge badge-warning text-dark">Siparişiniz Kargoya Verildi</span>
+                            }
+                            else if (Model.OrderState == Abc.MvcWebUI.Entity.EnumOrderState.Completed)
+                            {
+                                <span class="badge badge-success">Siparişiniz Tamamlandı</span>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-4 font-weight-bold">🆔 Sipariş ID</dt>
+                        <dd class="col-sm-8">@Model.OrderId</dd>
+
+                        <dt class="col-sm-4 font-weight-bold">🔢 Sipariş Numarası</dt>
+                        <dd class="col-sm-8">@Model.OrderNumber</dd>
+
+                        <dt class="col-sm-4 font-weight-bold">💳 Toplam Tutar</dt>
+                        <dd class="col-sm-8">
+                            <i class="fa fa-try text-success"></i> @Model.Total
+                        </dd>
+
+                        <dt class="col-sm-4 font-weight-bold">📅 Sipariş Tarihi</dt>
+                        <dd class="col-sm-8">@Model.OrderDate.ToString("dd.MM.yyyy HH:mm")</dd>
+
+                        <dt class="col-sm-4 font-weight-bold">📍 Teslimat Adresi</dt>
+                        <dd class="col-sm-8">
+                            <strong>@Model.AdresBasligi</strong>
+                            <hr />
+                            @Model.Adres<br />
+                            @Model.Sehir - @Model.Ilce - @Model.Mahalle<br />
+                            @Model.PostaKodu
+                        </dd>
+
+                        <dt class="col-sm-4 font-weight-bold">🛍️ Ürünler</dt>
+                        <dd class="col-sm-8">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead class="thead-light text-center">
+                                        <tr>
+                                            <th>Görsel</th>
+                                            <th>Ürün Adı</th>
+                                            <th>Adet</th>
+                                            <th class="table_header price-header">Birim Fiyat</th>
+                                            <th>Detay</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.OrderLines)
+                                        {
+                                            <tr class="text-center">
+                                                <td>
+                                                    <img src="~/Upload/@item.Image" width="70" class="img-thumbnail" />
+                                                </td>
+                                                <td>@item.ProductName</td>
+                                                <td>@item.Quantity</td>
+                                                <td class="table_element price-cell">
+                                                    <i class="fa fa-try text-success"></i> @item.Price
+                                                </td>
+                                                <td>
+                                                    <a href="/Home/Details/@item.ProductId" class="btn btn-primary btn-sm" target="_blank">
+                                                        <i class="fa fa-try"></i> Ürün Detayları
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </dd>
+                    </dl>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

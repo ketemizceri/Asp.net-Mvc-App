@@ -1,0 +1,187 @@
+﻿
+@using Abc.MvcWebUI.Models;
+@model IEnumerable<ProductModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+
+<style>
+
+
+
+    .jumbotron-container 
+    
+    {
+        max-height: 500px;
+        text-align:center;
+    }
+
+    .lead
+
+    {
+
+        color:white;
+
+    }
+
+
+
+    .jumbotron-header
+    {
+
+        color:white;
+
+    }
+
+
+
+    .carousel-header {
+        background-color: blue;
+        padding: 10px;
+        width: fit-content; /* içeriğe göre genişlik */
+        margin: 20px auto; /* ortalamak için */
+        border-radius: 8px;
+    }
+
+
+
+
+     .carousel-header h2 {
+            color: white;
+            font-weight: bold;
+            margin: 0;
+            padding: 0 20px; /* yatay boşluk */
+      }
+
+
+
+     .custom-carousel img 
+     {
+        max-height: 450px;
+        object-fit: contain;
+     }
+
+
+
+
+
+</style>
+
+
+
+
+
+
+
+
+<div class="jumbotron">
+
+    <div class="jumbotron-container">
+
+        <h1 class="display-4 jumbotron-header">KTech</h1>
+        <p class="lead" style="font-size:25px">Teknolojinin En Güncel Adresi!</p>
+        <p style="color:white;font-size:30px">Ürünlerimizin ömür boyu bakım garantisi vardır.</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/Home/AboutUs" role="button">Hakkımızda</a>
+        </p>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+        <div class="container-carousel" style="">
+
+            <div class="container carousel-header">
+                <h2>Popüler Ürünler</h2>
+            </div>
+
+            <div id="carouselExampleIndicators" class="carousel slide custom-carousel" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+
+
+                    <div class="carousel-item active">
+                        <a href="/Home/Details/12">
+                            <img class="d-block w-100" src="/Upload/12.jpg" alt="First slide">
+                            <div class="carousel-caption d-none d-md-block">
+
+                                <div>
+                                    <h5 style="color:black">SAMSUNG QE 65QN70F 65inch 163 cm 4K UHD</h5>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="carousel-item">
+                        <a href="/Home/Details/11">
+                            <img class="d-block w-100" src="/Upload/11.jpg" alt="Second slide">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div>
+                                    <h5 style="color:black">LG 65QNED86T 65 inç 165 cm 4K Smart TV AI</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="carousel-item">
+                        <a href="/Home/Details/15">
+                            <img class="d-block w-100" src="/Upload/15.jpg" alt="Third slide">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div>
+                                    <h5 style="color:black;">GRUNDIG 65GHO9900 65inch 164 cm 4K UHD</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span style="background-color:black; border-radius:8px; " class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span style="background-color: black; border-radius:8px" class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+<div class="container pb-5" >
+
+    @Html.Partial("_ProductList", Model)
+
+</div>
+
+
+
+
+
+

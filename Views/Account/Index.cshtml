@@ -1,0 +1,149 @@
+﻿
+@model IEnumerable<Abc.MvcWebUI.Models.UserOrderModel>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+<style>
+
+
+
+  th
+    
+    {
+
+
+      text-align:center;
+
+      white-space:nowrap;
+
+
+    }
+
+    td 
+    {
+        text-align: center;
+       
+        
+        white-space: nowrap;
+    
+        
+    }
+
+
+
+
+
+</style>
+
+
+
+
+
+
+
+
+<div class="container">
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+                <h2 style="text-align:center">Sipariş Bilgileriniz</h2>
+                <hr/>
+
+               <table class="table table-bordered table-striped ">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Sipariş Numarası</th>
+                            <th>Sipariş Tarihi</th>
+                            <th>Toplam</th>
+                            <th>Sipariş Durumu</th>
+                            <th></th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+
+                        @foreach (var item in Model)
+                        {
+
+
+                            <tr>
+
+                                <td>@item.OrderNumber</td>
+                                <td>@item.OrderDate.ToShortDateString()</td>
+                                <td>
+                                    <i class="fa fa-try" aria-hidden="true"></i>
+                                    @item.Total
+                                </td>
+                                <td>
+
+
+
+                                    @if (item.OrderState == Abc.MvcWebUI.Entity.EnumOrderState.Waiting)
+                                    {
+
+                                        <span class="badge-danger">Onay Bekleniyor</span>
+
+                                    }
+
+                                    else if (item.OrderState == Abc.MvcWebUI.Entity.EnumOrderState.Shipping)
+
+                                    {
+
+                                        <span class="badge-warning">Siparişininz Kargoya Verildi</span>
+
+                                    }
+
+
+
+                                    else if (item.OrderState == Abc.MvcWebUI.Entity.EnumOrderState.Completed)
+
+                                    {
+
+                                        <span class="badge-success">Siparişininiz Tamamlandı</span>
+
+                                    }
+
+
+
+
+                                </td>
+                                <td>
+
+                                    @Html.ActionLink("Ürün Detayları","Details",new { id = item.Id }, new {@class="btn btn-primary"})
+
+                                </td>
+
+                            </tr>
+
+                        }
+
+                    </tbody>
+
+
+               </table>
+
+
+
+        </div>
+
+    </div>
+
+
+
+</div>
+

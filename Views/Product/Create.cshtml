@@ -1,0 +1,104 @@
+﻿@model Abc.MvcWebUI.Entity.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 style="text-align:center">🛍️ Yeni Ürün Ekle</h2>
+                    <hr />
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, "Ürün Adı", new { @class = "font-weight-bold" })
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, "Ürün Açıklama", new { @class = "font-weight-bold" })
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(model => model.Price,"Ürün Fiyatı", new { @class = "font-weight-bold" })
+                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(model => model.Stock,"Stok Miktarı", new { @class = "font-weight-bold" })
+                                @Html.EditorFor(model => model.Stock, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Image, "Ürün Görseli", new { @class = "font-weight-bold" })
+                            @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-check mb-2">
+                            @Html.EditorFor(model => model.IsHome, new { htmlAttributes = new { @class = "form-check-input" } })
+                            @Html.LabelFor(model => model.IsHome, "Anasayfada mı?", new { @class = "form-check-label ml-2" })
+                            @Html.ValidationMessageFor(model => model.IsHome, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-check mb-3">
+                            @Html.EditorFor(model => model.IsApproved, new { htmlAttributes = new { @class = "form-check-input" } })
+                            @Html.LabelFor(model => model.IsApproved, "Onaylı mı?", new { @class = "form-check-label ml-2" })
+                            @Html.ValidationMessageFor(model => model.IsApproved, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CategoryId, "Kategori Adı", new { @class = "font-weight-bold" })
+                            @Html.DropDownList("CategoryId", null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary">Oluştur</button>
+                            @Html.ActionLink("Ürün Kontrol", "Index", null, new { @class = "btn btn-warning" })
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

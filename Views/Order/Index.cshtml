@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Abc.MvcWebUI.Models.AdminOrderModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<style>
+    th, td {
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+</style>
+
+<div class="container py-5">
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-10 text-center">
+            <h2> Siparişler</h2>
+            <hr />
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped shadow-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>#</th>
+                    <th>Sipariş No</th>
+                    <th>Tarih</th>
+                    <th>Durum</th>
+                    <th>Ürün Adedi</th>
+                    <th>Tutar</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.OrderNumber</td>
+                        <td>@item.OrderDate.ToString("dd.MM.yyyy")</td>
+                        <td>@item.OrderState</td>
+                        <td>@item.Count</td>
+                        <td>
+                            <i class="fa fa-try" aria-hidden="true"></i> @item.Total
+                        </td>
+                        <td>
+                            @Html.ActionLink(" Detay", "Details", new { id = item.Id },
+                                new { @class = "btn btn-info btn-sm" })
+                            <i class="fas fa-info-circle ml-1 text-info"></i>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
